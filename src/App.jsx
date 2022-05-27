@@ -11,7 +11,7 @@ const App = () => {
   if (!address) {
   return (
     <div className="landing">
-      <h1>Welcome to My DAO</h1>
+      <h1>Welcome to EARTH DAO</h1>
       <button onClick={connectWithMetamask} className="btn-hero">
         Connect your wallet
       </button>

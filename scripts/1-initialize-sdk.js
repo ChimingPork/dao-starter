@@ -2,7 +2,7 @@ import { ThirdwebSDK } from "@thirdweb-dev/sdk";
 import { ethers } from "ethers";
 
 //import .env file to seculry store environment variables
-import dotenv from dotenv;
+import dotenv from "dotenv";
 dotenv.config();
 
 //check to make sure .env works
