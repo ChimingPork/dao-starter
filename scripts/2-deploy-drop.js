@@ -4,6 +4,7 @@ import { readFileSync } from "fs";
 
 (async () => {
     try {
+        //ERC-1155
         const editionDropAddress = await sdk.deployer.deployEditionDrop({
             //The collection name
             name:"EarthDAO Membership",
