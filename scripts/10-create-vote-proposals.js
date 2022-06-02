@@ -11,7 +11,7 @@ const token = sdk.getToken("0xaE506488B2ece9d4f7CABB9cC95e88f9eA34f2d7");
     try {
         //Create proposal to mint 420,000 new token to the treasury.
         const amount = 420_000;
-        const description = "Should the DAO mint an additional" + amount + " tokens into the treasury?";
+        const description = "Should the DAO mint an additional " + amount + " tokens into the treasury?";
         const executions = [
             {
                 //Our token contract that executes the mint.
@@ -41,7 +41,7 @@ const token = sdk.getToken("0xaE506488B2ece9d4f7CABB9cC95e88f9eA34f2d7");
     try {
         //Create proposal to transfer deployer 7,000 tokens for doing all this work!
         const amount = 7_000
-        const description = "Should the DAO transfer" + amount + " tokens from treasury to" + process.env.WALLET_ADDRESS + " for doing all this work?";
+        const description = "Should the DAO transfer " + amount + " tokens from treasury to" + process.env.WALLET_ADDRESS + " for doing all this work?";
         const executions = [
             {
                 //Again, sending 0 ETH, just governance token
