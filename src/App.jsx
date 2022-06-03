@@ -215,7 +215,7 @@ if (hasClaimedNFT) {
   return (
     <div className="member-page">
       <h1>🌎Earth DAO Member Page</h1>
-      <p>Welcome Back {shortenAddress(address)}!</p>
+      <h2>Welcome Back {shortenAddress(address)}!</h2>
       <div>
         <div>
           <h2><u>Earthlings</u></h2>
@@ -238,26 +238,19 @@ if (hasClaimedNFT) {
             </tbody>
           </table>
           <h2><u>Successful Proposals</u></h2>
-            <form>
+          <form>
             {successfulProposals.map((proposal) => (
               <div key={proposal.proposalId} className="card">
                 <h5>{proposal.description}</h5>
-                <div>
-                  {proposal.votes.map(({ type, label }) => (
-                    <div key={type}>
-                      <h5>Vote Results</h5>
-                      <h5>For: {parseInt(proposal.votes[1].count)}</h5>
-                      <h5>Against: {parseInt(proposal.votes[0].count)}</h5>
-                      <h5>Abstain: {parseInt(proposal.votes[2].count)}</h5>
-                      <label htmlFor={proposal.proposalId + "-" + type}>
-                        {label}
-                      </label>
-                    </div>
-                  ))}
+                <h5><u>Vote Results</u></h5>
+                <div className="result">
+                <h5>For: {parseInt(proposal.votes[1].count)} </h5>
+                <h5>Against: {parseInt(proposal.votes[0].count)} </h5>
+                <h5>Abstain: {parseInt(proposal.votes[2].count)} </h5>
                 </div>
               </div>
             ))}
-          </form>
+            </form>
           <h2><u>Defeated Proposals</u></h2>
             <form>
             {defeatedProposals.map((proposal) => (
