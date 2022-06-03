@@ -93,7 +93,24 @@ h1 {
 
 .member-page form h5 {
   margin-top: 0;
+  margin-bottom: 0;
   color: #7700ee;
+}
+
+.member-page form .sub {
+  display: flex;
+  margin-bottom: .5;
+  margin: 0;
+  justify-content: space-between;
+  color: #000000;
+}
+
+.member-page div .result h5 {
+  display: flex;
+  margin-bottom: .5;
+  margin: 0;
+  justify-content: space-between;
+  color: #000000;
 }
 
 .member-page form .card > div {
