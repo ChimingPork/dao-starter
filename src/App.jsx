@@ -29,6 +29,9 @@ const App = () => {
 
   //Set proposal/voting states
   const [proposals, setProposals] = useState([]);
+  const [activeProposals, setActiveProposals] = useState([]);
+  const [defeatedProposals, setDefeatedProposals] = useState([]);
+  const [successfulProposals, setSuccessfulProposals] = useState([]);
   const [isVoting, setIsVoting] = useState(false);
   const [hasVoted, setHasVoted] = useState(false);
 
@@ -44,6 +47,32 @@ const App = () => {
         const proposals = await vote.getAll();
         setProposals(proposals);
         console.log("🌈 Proposals:", proposals)
+
+        let i = 0; 
+        const activeProposals = [];
+        const defeatedProposals = [];
+        const successfulProposals = [];
+        while (i < proposals.length) {
+          if (proposals[i].state === 1) {
+          activeProposals.push(proposals[i]);
+          } 
+          
+          else if (proposals[i].state === 3) {
+            defeatedProposals.push(proposals[i]);
+          }
+
+          else if (proposals[i].state === 4) {
+            successfulProposals.push(proposals[i]);
+          }
+          i++;
+        }
+        setActiveProposals(activeProposals);
+        setDefeatedProposals(defeatedProposals);
+        setSuccessfulProposals(successfulProposals);
+        console.log("🌈 Active Proposals:", activeProposals);
+        console.log("❌ Defeated Proposals:", defeatedProposals);
+        console.log("✅ Successful Proposals:", successfulProposals)
+  
       } catch (error) {
         console.log("failed to get proposals", error);
       }
@@ -51,7 +80,7 @@ const App = () => {
     getAllProposals();
   }, [hasClaimedNFT, vote]);
 
-//Check is user already voted
+//Check if user already voted
 useEffect(() => {
   if (!hasClaimedNFT) {
     return;
@@ -61,7 +90,7 @@ useEffect(() => {
   if (!proposals.length) {
     return;
   }
-
+  
   const checkIfUserHasVoted = async () => {
     try {
       const hasVoted = await vote.hasVoted(proposals[0].proposalId, address);
@@ -185,11 +214,11 @@ const mintNft = async () => {
 if (hasClaimedNFT) {
   return (
     <div className="member-page">
-      <h1>🍪DAO Member Page</h1>
-      <p>Congratulations on being a member</p>
+      <h1>🌎Earth DAO Member Page</h1>
+      <p>Welcome Back {shortenAddress(address)}!</p>
       <div>
         <div>
-          <h2>Member List</h2>
+          <h2><u>Earthlings</u></h2>
           <table className="card">
             <thead>
               <tr>
@@ -210,7 +239,7 @@ if (hasClaimedNFT) {
           </table>
         </div>
         <div>
-          <h2>Active Proposals</h2>
+          <h2><u>Active Proposals</u></h2>
           <form
             onSubmit={async (e) => {
               e.preventDefault();
