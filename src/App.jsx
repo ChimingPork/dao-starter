@@ -1,10 +1,12 @@
-import { useAddress, useMetamask, useEditionDrop, useToken, useVote } from '@thirdweb-dev/react';
+import { useAddress, useMetamask, useEditionDrop, useToken, useVote, useNetwork } from '@thirdweb-dev/react';
+import { ChainId } from '@thirdweb-dev/sdk';
 import { useState, useEffect, useMemo } from 'react';
 import { AddressZero } from "@ethersproject/constants";
 
 const App = () => {
   //Use hooks given by thirdweb
   const address = useAddress();
+  const network = useNetwork();
   const connectWithMetamask = useMetamask();
   console.log("👋 Address:", address);
   //Initialize editionDrop Contract
@@ -198,6 +200,18 @@ const mintNft = async () => {
   }
 };
 
+if (address && (network?.[0].data.chain.id !== ChainId.Goerli)) {
+  return (
+    <div className="unsupported-network">
+      <h2>Please connect to Goerli</h2>
+      <p>
+        This dapp only works on the Goerli network, please switch networks
+        in your connected wallet.
+      </p>
+    </div>
+  );
+}
+
   // If no wallet is connected, add a button to call connectWallet
   if (!address) {
   return (
@@ -244,9 +258,9 @@ if (hasClaimedNFT) {
                 <h5>{proposal.description}</h5>
                 <h5><u>Vote Results</u></h5>
                 <div className="result">
-                <h5>For: {parseInt(proposal.votes[1].count)} </h5>
-                <h5>Against: {parseInt(proposal.votes[0].count)} </h5>
-                <h5>Abstain: {parseInt(proposal.votes[2].count)} </h5>
+                <h5> For: {parseInt(proposal.votes[1].count)} </h5>
+                <h5> Against: {parseInt(proposal.votes[0].count)} </h5>
+                <h5> Abstain: {parseInt(proposal.votes[2].count)} </h5>
                 </div>
               </div>
             ))}
