@@ -13,3 +13,4 @@ To get started with this project, clone this repo and follow these commands:
 - Add Form to allow submission of new proposals
 - Fix innacurate display of vote counts / vote results
 - Fix setVote which returns to false on page reload
+- Add etherscan contract links to footer
